@@ -1,5 +1,6 @@
 package com.example.finances.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -20,6 +21,8 @@ public class FamilyMember {
     private String name;
     private String email;
     private double salary;
+
+    @JsonIgnore
     @OneToMany(mappedBy = "familyMember")
     private List<Expense> expenses = new ArrayList<>();
 

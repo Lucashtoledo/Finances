@@ -36,6 +36,7 @@ public class ExpenseService {
         if (updatedExpense.isPresent()) {
             updatedExpense.get().setDescription(expense.getDescription());
             updatedExpense.get().setAmount(expense.getAmount());
+            updatedExpense.get().setFamilyMember(expense.getFamilyMember());
             return repository.save(updatedExpense.get());
         }
         throw new EntityNotFoundException("Expense not found");

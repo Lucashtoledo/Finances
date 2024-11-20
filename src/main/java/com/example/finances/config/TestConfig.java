@@ -29,12 +29,6 @@ public class TestConfig implements CommandLineRunner {
     /* O método run é executado automaticamente logo após a inicialização do contexto Spring,
     permitindo que você execute algum código específico no início da aplicação.*/
     public void run(String... args) throws Exception {
-        // Criar despesas
-        Expense expense1 = new Expense(null, "Balé da Maria", 120.00);
-        Expense expense2 = new Expense(null, "Gás de Cozinha", 100.00);
-        Expense expense3 = new Expense(null, "Conta de Luz", 280.00);
-        Expense expense4 = new Expense(null, "Conta de Água", 220.00);
-
         // Criar membros da família
         FamilyMember member1 = new FamilyMember(null, "Bob", "bob@mail.com", 5500.00);
         FamilyMember member2 = new FamilyMember(null, "Maria", "maria@mail.com", 6000.00);
@@ -42,6 +36,11 @@ public class TestConfig implements CommandLineRunner {
         // Salvar membros da família
         Repository.save(member1);
         Repository.save(member2);
+        // Criar despesas
+        Expense expense1 = new Expense(null, "Balé da Maria", 120.00);
+        Expense expense2 = new Expense(null, "Gás de Cozinha", 100.00);
+        Expense expense3 = new Expense(null, "Conta de Luz", 280.00);
+        Expense expense4 = new Expense(null, "Conta de Água", 220.00);
 
         // Associar despesas aos membros da família
         expense1.setFamilyMember(member1);
