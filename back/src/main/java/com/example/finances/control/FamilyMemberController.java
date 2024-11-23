@@ -37,9 +37,9 @@ public class FamilyMemberController {
     }
 
     @PostMapping
-    private ResponseEntity<Void> createFamilyMember(@RequestBody FamilyMember familyMember) {
-        Service.save(familyMember);
-        return ResponseEntity.ok().build();
+    private ResponseEntity<FamilyMember> createFamilyMember(@RequestBody FamilyMember familyMember) {
+        FamilyMember familyMember1 = Service.save(familyMember);
+        return ResponseEntity.ok(familyMember1);
     }
 
     @PostMapping("/{id}")
