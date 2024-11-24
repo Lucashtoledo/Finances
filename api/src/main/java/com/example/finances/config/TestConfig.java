@@ -23,7 +23,7 @@ public class TestConfig implements CommandLineRunner {
     @Autowired
     private FamilyMemberRepository Repository;
     @Autowired
-    private ExpenseRepository ExpenseRepository;
+    private ExpenseRepository expenseRepository;
 
     @Override
     /* O método run é executado automaticamente logo após a inicialização do contexto Spring,
@@ -37,22 +37,26 @@ public class TestConfig implements CommandLineRunner {
         Repository.save(member1);
         Repository.save(member2);
         // Criar despesas
-        Expense expense1 = new Expense(null, "Balé da Maria", 120.00);
-        Expense expense2 = new Expense(null, "Gás de Cozinha", 100.00);
-        Expense expense3 = new Expense(null, "Conta de Luz", 280.00);
-        Expense expense4 = new Expense(null, "Conta de Água", 220.00);
+        Expense expense1 = new Expense(null, "Balé da Maria", 120.00, 23);
+        Expense expense2 = new Expense(null, "Gás de Cozinha", 100.00, 7);
+        Expense expense3 = new Expense(null, "Conta de Luz", 280.00, 15);
+        Expense expense4 = new Expense(null, "Conta de Água", 220.00, 21);
+        Expense expense5 = new Expense(null, "Moto", 220.00, 21, 15);
 
         // Associar despesas aos membros da família
         expense1.setFamilyMember(member1);
         expense2.setFamilyMember(member1);
         expense3.setFamilyMember(member2);
         expense4.setFamilyMember(member2);
+        expense4.setFamilyMember(member2);
 
         // Salvar despesas
-        ExpenseRepository.save(expense1);
-        ExpenseRepository.save(expense2);
-        ExpenseRepository.save(expense3);
-        ExpenseRepository.save(expense4);
+        expenseRepository.save(expense1);
+        expenseRepository.save(expense2);
+        expenseRepository.save(expense3);
+        expenseRepository.save(expense4);
+        expenseRepository.save(expense5);
+
     }
 
 }

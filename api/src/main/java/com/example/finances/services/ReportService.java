@@ -8,6 +8,9 @@ import com.example.finances.repositories.FamilyMemberRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.Duration;
+import java.time.LocalDate;
+import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -37,6 +40,26 @@ public class ReportService {
                 .stream()  // Cria o stream a partir da lista
                 .map(FamilyMember::getSalary)  // Mapeia cada FamilyMember para seu salário
                 .collect(Collectors.toList());  // Coleta os resultados em uma lista de Double
+    }
+
+
+    public List<Expense> getMonthlyTotalAmount(String ld){
+        LocalDate date = LocalDate.parse(ld);
+        List<Expense> expenses = expenseRepository.findAll();
+        List<Expense> presentExpenses = new ArrayList<>();
+
+        expenses.forEach(expense ->{
+            if (expense.getInstallmentCount() == 9999){
+                presentExpenses.add(expense);
+            }else if (expense.getInstallmentCount() > 0 && expense.getInstallmentCount() < 9999){
+                long daysDifference = ChronoUnit.DAYS.between(date, expense.getFinalDate());
+                if (daysDifference > 0){
+                    presentExpenses.add(expense);
+                }
+            }
+        });
+
+        return presentExpenses;
     }
 
     public ReportData getReport(){

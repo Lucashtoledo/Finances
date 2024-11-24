@@ -1,13 +1,16 @@
 package com.example.finances.control;
 
+import com.example.finances.entities.Expense;
 import com.example.finances.entities.ReportData;
 import com.example.finances.services.ReportService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.time.LocalDate;
 import java.util.List;
 
 @RestController
@@ -32,6 +35,10 @@ public class ReportController {
         return ResponseEntity.ok().body(reportService.getReport());
     }
 
+    @GetMapping("total")
+    public ResponseEntity<List<Expense>> getMonthlyTotalAmount(@RequestParam("date") String date){
+        return ResponseEntity.ok().body(reportService.getMonthlyTotalAmount(date));
+    }
 
 
 }
