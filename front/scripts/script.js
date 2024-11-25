@@ -26,23 +26,11 @@ navLinks.forEach(link => {
 });
 
 function loadPageScript(page) {
-    const existingScript = document.getElementById(`${page}-script`);
-    if (existingScript) {
-        console.log(`Script ${page} já foi carregado. Removendo e recarregando...`);
-        existingScript.remove(); // Remove o script anterior
-    }
-
-    // Cria o novo script
     const script = document.createElement('script');
     script.src = `scripts/${page}.js`; // Define o caminho do script
-    script.id = `${page}-script`; // Atribui um ID único ao script
     script.defer = true; // Garante que o script será executado após o HTML
-
-    script.onload = () => {
-        console.log(`${page} script carregado com sucesso!`);
-    };
-
     // Adiciona o script ao documento
     document.body.appendChild(script);
 }
+
 

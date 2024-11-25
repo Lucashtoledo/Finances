@@ -27,7 +27,7 @@ public class Expense {
     @JoinColumn(name = "family_member_id")
     private FamilyMember familyMember;
 
-    public Expense(Long id, String description, Double amount, int dueDay, int installmentCount) {
+    public Expense(Long id, String description, Double amount, int dueDay, int installmentCount, FamilyMember familyMember) {
         this.id = id;
         this.description = description;
         this.amount = amount;
@@ -35,12 +35,14 @@ public class Expense {
         this.dueDay = dueDay;
         this.installmentCount = installmentCount;
         this.finalDate = date.plusMonths(installmentCount);
+        this.familyMember = familyMember;
     }
-    public Expense(Long id, String description, Double amount, int dueDay) {
+    public Expense(Long id, String description, Double amount, int dueDay, FamilyMember familyMember) {
         this.id = id;
         this.description = description;
         this.amount = amount;
         this.date = LocalDate.now();
         this.dueDay = dueDay;
+        this.familyMember = familyMember;
     }
 }

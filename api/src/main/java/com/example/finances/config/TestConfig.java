@@ -37,18 +37,12 @@ public class TestConfig implements CommandLineRunner {
         Repository.save(member1);
         Repository.save(member2);
         // Criar despesas
-        Expense expense1 = new Expense(null, "Balé da Maria", 120.00, 23);
-        Expense expense2 = new Expense(null, "Gás de Cozinha", 100.00, 7);
-        Expense expense3 = new Expense(null, "Conta de Luz", 280.00, 15);
-        Expense expense4 = new Expense(null, "Conta de Água", 220.00, 21);
-        Expense expense5 = new Expense(null, "Moto", 220.00, 21, 15);
+        Expense expense1 = new Expense(null, "Balé da Maria", 120.00, 23, member1);
+        Expense expense2 = new Expense(null, "Gás de Cozinha", 100.00, 7, member1);
+        Expense expense3 = new Expense(null, "Conta de Luz", 280.00, 15, member2);
+        Expense expense4 = new Expense(null, "Conta de Água", 220.00, 21, member2);
+        Expense expense5 = new Expense(null, "Moto", 750.00, 21, 15, member1);
 
-        // Associar despesas aos membros da família
-        expense1.setFamilyMember(member1);
-        expense2.setFamilyMember(member1);
-        expense3.setFamilyMember(member2);
-        expense4.setFamilyMember(member2);
-        expense4.setFamilyMember(member2);
 
         // Salvar despesas
         expenseRepository.save(expense1);
